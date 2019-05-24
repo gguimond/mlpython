@@ -1,0 +1,49 @@
+a) linear : ax+b=0
+
+b)quadratic : ax^2+bx+c =0 and last but not the least
+
+c)polynomial : (ax+b) ^n
+
+y = a0 + a1x
+
+a₀ and a₁ describe the shape of our line. a₀ is called the bias and a₁ is called a weight.
+
+Fundamentally, classification is about predicting a label and regression is about predicting a quantity.
+
+=================== Linear regression
+
+Linear regression is a technique used to analyze a linear relationship between input variables and a single output variable. A linear relationship means that the data points tend to follow a straight line. Simple linear regression involves only a single input variable. 
+
+=> Cost Function, error and squared error, Mean Squared Error (MSE)
+
+=> minimizing the cost function : Ordinary Least Squares, Gradient descent (move the values of the coefficients and monitor whether the cost decreases or not.)
+
+training set to train our model and a testing set to test its accuracy
+
+=================== Overfitting
+
+A model suffers from Overfitting when it has learned too much from the training data, and does not perform well in practice as a result
+A model suffers from Underfitting when it has not learned enough from the training data, and does not perform well in practice as a result
+
+=================== Regularization
+
+When we look at a set of data, there are two main components: the underlying pattern and noise. We only want to match the pattern and not the noise
+
+So if we were using a cost function CF, regularization might lead us to change it to CF + λ * R where R is some function of our weights and λ is a tuning parameter. The result is that models with higher weights (more complex) get penalized more. The tuning parameter basically lets us adjust the regularization to get better results. The higher the λ the less impact the weights have on the total cost.
+
+Ridge regression forces weights to approach zero but will never cause them to be zero. This means that all the features will be represented in our model but overfitting will be minimized
+
+Lasso regression is a type of regularization where the function R involves summing the absolute values of our weights. lasso regression can force weights to be zero. This means that our resulting model may not even consider some of the features
+
+=================== Cross-Validation
+
+Cross-validation assures a model is producing accurate results and comparing those results against other models
+
+Holdout Method : The holdout cross-validation method involves removing a certain portion of the training data and using it as test data
+
+K-Fold Cross Validation :  repeating the holdout method on k subsets of your dataset
+
+Leave-P-Out Cross Validation (LPOCV) tests a model by using every possible combination of P test data points on a model. 
+
+
+
