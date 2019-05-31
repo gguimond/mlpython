@@ -47,3 +47,86 @@ Leave-P-Out Cross Validation (LPOCV) tests a model by using every possible combi
 
 
 
+*********************************Supervised learning
+=================== Decision Trees
+
+Decision trees are a classifier in machine learning that allows us to make predictions based on previous data. They are like a series of sequential “if … then” statements you feed new data into to get a result.
+
+A Classification Tree, like the one shown above, is used to get a result from a set of possible values. A Regression Tree is a decision tree where the result is a continuous value, such as the price of a car.
+
+Splitting (Induction) : greedy algorithm:
+
+Starting from the root, we create a split for each attribute.
+For each created split, calculate the cost of the split.
+Choose the split that costs the least.
+Recurse into the sub-trees and continue from step 1.
+
+Cost of Splitting : cost function cf example
+
+Pruning :  it's beneficial to prune less important splits of a decision tree away. Pruning involves calculating the information gain of each ending sub-tree (the leaf nodes and their parent node), then removing the sub-tree with the least information gain
+
+One hot encoder : 
+
+╔════════════╦═════════════════╦════════╗ 
+║ CompanyName Categoricalvalue ║ Price  ║
+╠════════════╬═════════════════╣════════║ 
+║ VW         ╬      1          ║ 20000  ║
+║ Acura      ╬      2          ║ 10011  ║
+║ Honda      ╬      3          ║ 50000  ║
+║ Honda      ╬      3          ║ 10000  ║
+╚════════════╩═════════════════╩════════╝
+
+╔════╦══════╦══════╦════════╦
+║ VW ║ Acura║ Honda║ Price  ║
+╠════╬══════╬══════╬════════╬
+║ 1  ╬ 0    ╬ 0    ║ 20000  ║
+║ 0  ╬ 1    ╬ 0    ║ 10011  ║
+║ 0  ╬ 0    ╬ 1    ║ 50000  ║
+║ 0  ╬ 0    ╬ 1    ║ 10000  ║
+╚════╩══════╩══════╩════════╝
+
+=================== k-Nearest Neighbors
+
+A classifier takes an already labeled data set, and then it trys to label new data points into one of the catagories.
+To do this we look at the closest points (neighbors) to the object and the class with the majority of neighbors will be the class that we identify the object to be in.
+
+Brute Force Method : calculating the Euclidean distance from the object being classified to each point in the set. The Euclidean distance is simply the length of a line segment that connects two points
+
+K-D Tree Method : reducing the amount of times we calculate the Euclidean distance. The idea behind this method is that if we know that two data points are close to each other and we calculate the Euclidean distance to one of them and then we know that distance is roughly close to the other point
+
+=================== Naive Bayes Classification
+
+Naive Bayes is a classification technique that uses probabilities we already know to determine how to classify input. These probabilities are related to existing classes and what features they have. 
+
+P(A|B) = P(A) P(B|A)
+        -----------
+           P(B)
+
+The main thing we will assume is that features are independent. Assuming independence means that the probability of a set of features occurring given a certain class is the same as the product of all the probabilities of each individual feature occurring given that class.
+
+Gaussian Model (Continuous) : Gaussian models assume features follow a normal distribution
+
+Multinomial Model (Discrete) : Multinomial models are used when we are working with discrete counts. Specifically, we want to use them when we are counting how often a feature occurs.
+
+Bernoulli Model (Discrete) : Unlike the multinomial case, here we are counting whether or not a feature occurred.
+
+=================== Logistic Regression
+
+Logistic regression is a method for binary classification. It works to divide points in a dataset into two distinct classes, or categories. For simplicity, let's call them class A and class B. The model will give us the probability that a given point belongs in category B. If it is low (lower than 50%), then we classify it in category A. Otherwise, it falls in class B. Logistic regression will instead create a sort of S-curve (using the sigmoid function) which will also help show certainty, since the output from logistic regression is not just a one or zero. 
+
+Logistic regression is great for situations where you need to classify between two categories. Some good examples are accepted and rejected applicants and victory or defeat in a competition.
+
+Logistic regression works using a linear combination of inputs, so multiple information sources can govern the output of the model. The parameters of the model are the weights of the various features, and represent their relative importance to the result. Logistic regression is, at its base, a transformation from a linear predictor to a probability between 0 and 1.
+
+Multinomial Logistic Regression : where the output can be any digit from 0 to 9
+
+=================== Linear Support Vector Machines
+
+The point of SVM's are to try and find a line or hyperplane to divide a dimensional space which best classifies the data points. If we were trying to divide two classes A and B, we would try to best separate the two classes with a line. On one side of the line/hyperplane would be data from class A and on the other side would be from class B. 
+
+This contrasts with the k-nearest neighbors algortihm, where we would have to calculate each data points nearest neighbors.
+
+The algorithm chooses the line/hyperplane with the maximum margin. Maximizing the margin will give us the optimal line to classify the data. 
+The data that is closest to the line is what determines the optimal line. These data points are called support vectors. The distance from these vectors to the hyperplane is called the margin. In general, the further those points are from the hyperplane, the greater the probability of correctly classifying the data.
+
+non-linearly separable data = kernel trick. Basically, the kernel trick takes the points to a higher dimension to turn non-linearly separable data to linear separable data.
