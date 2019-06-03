@@ -130,3 +130,28 @@ The algorithm chooses the line/hyperplane with the maximum margin. Maximizing th
 The data that is closest to the line is what determines the optimal line. These data points are called support vectors. The distance from these vectors to the hyperplane is called the margin. In general, the further those points are from the hyperplane, the greater the probability of correctly classifying the data.
 
 non-linearly separable data = kernel trick. Basically, the kernel trick takes the points to a higher dimension to turn non-linearly separable data to linear separable data.
+
+=================== Clustering
+
+Clustering is the process of grouping similar data and isolating dissimilar data. Clustering is used to identify potential groups in a data set while classification is used to match an input to an existing group.
+
+K-Means : K-Means clustering attempts to divide a data set into K clusters using an iterative process. The first step is choosing a center point for each cluster. This center point does not need to correspond to an actual data point. The center points could be chosen at random or we could pick them if we have a good guess of where they should be. The second step is assigning each data point to a cluster. We do this by measuring the distance between a data point and each center point and choosing the cluster whose center point is the closest. Now that all the data points belong to a cluster, the third step is recomputing the center point of each cluster. This is just the average of all the data points belonging to the cluster. Now we just repeat the second and third step until the centers stop changing or only change slightly between iterations. 
+
+K-Means clustering requires us to input the number of expected clusters which isn’t always easy to determine. It can also be inconsistent depending on where we choose the starting center points in the first step
+
+Hierarchical : Hierarchical clustering imagines the data set as a hierarchy of clusters. We could start by making one giant cluster out of all the data points. Inside of this cluster, we find the two least similar sub-clusters and split them. This can be done by using an algorithm to maximize the inter-cluster distance. We continue to split the sub-clusters until every data point belongs to its own cluster or until we decide to stop. => top-down or divisive clustering
+
+Alternatively, we could start by considering a cluster for every data point. The next step would be to combine the two closest clusters into a larger cluster. This can be done by finding the distance between every cluster and choosing the pair with the least distance between them. We would continue this process until we had a single cluster. => bottom-up or agglomerative clustering
+
+Unlike K-Means, Hierarchical clustering is relatively slow so it doesn’t scale as well to large data sets. On the bright side, Hierarchical clustering is more consistent when you run it multiple times and doesn’t require you to know the number of expected clusters.
+
+=================== Principal Component Analysis
+
+Principal component analysis is one technique used to take a large list of interconnected variables and choose the ones that best suit a model. This process of focusing in on only a few variables is called dimensionality reduction, and helps reduce complexity of our dataset. At its root, principal component analysis summarizes data.
+
+Feature elimination simply involves pruning features from a dataset we deem unnecessary. A downside of feature elimination is that we lose any potential information gained from the dropped features.
+
+Feature extraction, however, creates new variables by combining existing features. At the cost of some simplicity or interpretability, feature extraction allows you to maintain all important information held within features.
+
+Principal component analysis deals with feature extraction (rather than elimination) by creating a set of independent variables called principal components.
+Techniques of performing principal component analysis range from arbitrarily selecting principal components, to automatically finding them until a variance is reached.
