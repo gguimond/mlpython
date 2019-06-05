@@ -1,0 +1,2 @@
+model_checkpoint_path: "C:\\Program Files\\wamp\\www\\mlpython\\mlp/checkpoints\\model"
+all_model_checkpoint_paths: "C:\\Program Files\\wamp\\www\\mlpython\\mlp/checkpoints\\model"
