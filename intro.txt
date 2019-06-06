@@ -131,6 +131,9 @@ The data that is closest to the line is what determines the optimal line. These 
 
 non-linearly separable data = kernel trick. Basically, the kernel trick takes the points to a higher dimension to turn non-linearly separable data to linear separable data.
 
+
+
+*********************************Unsupervised learning
 =================== Clustering
 
 Clustering is the process of grouping similar data and isolating dissimilar data. Clustering is used to identify potential groups in a data set while classification is used to match an input to an existing group.
@@ -155,3 +158,64 @@ Feature extraction, however, creates new variables by combining existing feature
 
 Principal component analysis deals with feature extraction (rather than elimination) by creating a set of independent variables called principal components.
 Techniques of performing principal component analysis range from arbitrarily selecting principal components, to automatically finding them until a variance is reached.
+
+
+
+*********************************Deep learning
+=================== Multi-layer Perceptron
+
+A multilayer perceptron (MLP) is a deep, artificial neural network. A neural network is comprised of layers of nodes which activate at various levels depending on the previous layer's nodes.
+
+Multilayer perceptron refers to a neural network with at least three layers of nodes, an input layer, some number of intermediate layers, and an output layer. Each node in a given layer is connected to every node in the adjacent layers. The input layer is just that, it is the way the network takes in data. The intermediate layer(s) are the computational machine of the network, they actually transform the input to the output. The output layer is the way that results are obtained from the neural network.
+
+fully connected" layers : They require labeled sample data, so they carry out supervised learning. For each training sample, nodes activate according to stored weights of the previous layer. During training (and beyond), the weights will not be perfectly accurate, so they will need to change a little bit to meet the desired results. MLPs use a method called backpropagation to learn from training data.
+
+A node is a single unit in a neural network. Nodes activate at different levels depending on a weighted sum of the previous layer's nodes. In practice, the actual activation is the result of a sigmoid function applied to this result, but we will skip over that detail here for simplicity. In MLPs, nodes activate based on all of the nodes in the previous layer.
+
+When training a neural network, the expected output is a level of activation for each node in the output layer. From that information and the actual activation, we can find the cost at each node, and adjust the weights accordingly. The idea of backpropagation is to adjust the weights that determine each node's activation based on the cost.
+In these early steps, it will have a high learning rate, making the weights more volatile. After a few iterations, it will be much more stable as it should need smaller adjustments. With that in mind, let's move forward one time step.
+
+The lower the loss, the better a model (unless the model has over-fitted to the training data). The loss is calculated on training and validation and its interperation is how well the model is doing for these two sets. Loss value implies how well or poorly a certain model behaves after each iteration of optimization. Ideally, one would expect the reduction of loss after each, or several, iteration(s).
+
+Logits are the raw scores output by the last layer of a neural network. Before activation takes place.
+Softmax function outputs a vector that represents the probability distributions of a list of potential outcomes. it's a way of normalizing
+The cross entropy is a summary metric: it sums across the elements.
+
+The accuracy of a model is usually determined after the model parameters are learned and fixed and no learning is taking place. Then the test samples are fed to the model and the number of mistakes (zero-one loss) the model makes are recorded, after comparison to the true targets. Then the percentage of misclassification is calculated.
+
+Adam is an optimization algorithm that can used instead of the classical stochastic gradient descent procedure to update network weights iterative based in training data.
+
+=================== Convolutional Neural Networks
+
+CNNs differ from other neural networks in that sequential layers are not necessarily fully connected. This means that a subset of the input neurons may only feed into a single neuron in the next layer. 
+With other neural networks we might use vectors as inputs, but with CNNs we are typically working with images and other objects with many dimensions.
+
+The architecture of a CNN can be broken down into an input layer, a set of hidden layers, and an output layer.
+
+The hidden layers are where the magic happens. The hidden layers will break down our input image in order to identify features present in the image. The initial layers focus on low-level features such as edges while the later layers progressively get more abstract. At the end of all the layers, we have a fully connected layer with neurons for each of our classification values. What we end up with is a probability for each of the classification values.
+
+convolutional layer : a convolution is some operation that acts on two input functions and produces an output function that combines the information present in the inputs. The first input will be our image and the second input will be some sort of filter such as a blur or sharpen. When we combine our image with the filter, we extract some information about the image.
+
+The filter or kernel is one of the functions used in the convolution. The filter will likely have a smaller height and width than the input image and can be thought of as a window sliding over the image.
+
+As the filter moves across the image, we are calculating values for the convolution output called a feature map. At each step, we multiply each entry in the image sample and filter elementwise and sum up all the products. This becomes an entry in the feature map.
+
+we moved the filter one unit horizontally or one unit vertically from some previous position. This value is called the stride. 
+
+ If we wanted the feature map to have the same height and width, we could pad the sample. This involves adding zero entries around the sample so that moving the filter keeps the dimensions of the original sample in the feature map. 
+
+ The output of the convolution layer is a set of feature maps. 
+
+ ReLU : The purpose of this layer is to introduce non-linearity into the system. Basically, real-world problems are rarely nice and linear so we want our CNN to account for this when it trains. 
+
+ pooling layer : The purpose of pooling layers are to reduce the spatial size of the problem. This in turn reduces the number of parameters needed for processing and the total amount of computation in the CNN. max pooling => In max pooling, we slide a window over the input and take the max value in the window at each step.
+
+ Fully connected layers are used to make the final classification in the CNN. Before moving to the first fully connected layer, we must flatten our input values into a one-dimensional vector that the layer can interpret.
+
+ The output layer uses some function, such as softmax, to convert the neuron values into a probability distribution over our classes.
+
+ Dropout Layer : is one of the most famous methods in order to prevent over-fitting. This operation randomly kills a portion of the neuron to stochastically force the neuron to learn more useful information.
+
+ The problem with training CNNs and other deep learning models is that they are much more complex than the models we covered in earlier modules. This results in training being much more computationally expensive to the point where we would need specialized hardware like GPUs to run our code. 
+
+ learning rate policy, placeholders, summaries, 
