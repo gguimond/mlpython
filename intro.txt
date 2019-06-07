@@ -218,4 +218,15 @@ we moved the filter one unit horizontally or one unit vertically from some previ
 
  The problem with training CNNs and other deep learning models is that they are much more complex than the models we covered in earlier modules. This results in training being much more computationally expensive to the point where we would need specialized hardware like GPUs to run our code. 
 
- learning rate policy, placeholders, summaries, 
+ learning rate policy, placeholders, summaries
+
+ =================== Autoencoders
+
+ Autoencoders are a kind of neural networks which imitate their inputs and produce the exact information at their outputs. 
+ Encoder and Decoder. The encoder transforms the input into a hidden space (hidden layer). The decoder then reconstructs the input information as the output.
+
+ Undercomplete Autoencoders: In this type, the hidden dimension is smaller than the input dimension. Training such autoencoder lead to capturing the most prominent features.
+  it is a feature extraction algorithm it helps us find a representation for our data and we can feed that representation to other algorithms, for example a classifier.
+
+ Regularized Autoencoders, Sparse Autoencoders, Denoising Autoencoders , Contractive Autoencoders , Variational Autoencoders
+
