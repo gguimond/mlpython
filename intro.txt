@@ -1,3 +1,6 @@
+https://github.com/machinelearningmindset/machine-learning-course
+https://medium.com/explore-artificial-intelligence/an-introduction-to-recurrent-neural-networks-72c97bf0912
+
 a) linear : ax+b=0
 
 b)quadratic : ax^2+bx+c =0 and last but not the least
@@ -229,4 +232,13 @@ we moved the filter one unit horizontally or one unit vertically from some previ
   it is a feature extraction algorithm it helps us find a representation for our data and we can feed that representation to other algorithms, for example a classifier.
 
  Regularized Autoencoders, Sparse Autoencoders, Denoising Autoencoders , Contractive Autoencoders , Variational Autoencoders
+
+
+ =================== Recurrent Neural Networks
+
+A glaring limitation of Vanilla Neural Networks (and also Convolutional Networks) is that their API is too constrained: they accept a fixed-sized vector as input (e.g. an image) and produce a fixed-sized vector as output (e.g. probabilities of different classes). Not only that: These models perform this mapping using a fixed amount of computational steps (e.g. the number of layers in the model).
+
+The core reason that recurrent nets are more exciting is that they allow us to operate over sequences of vectors: Sequences in the input, the output, or in the most general case both.
+
+RNNs combine the input vector with their state vector with a fixed (but learned) function to produce a new state vector : this output vector’s contents are influenced not only by the input you just fed in, but also on the entire history of inputs you’ve fed in in the past. 
 
