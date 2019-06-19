@@ -1,5 +1,13 @@
 https://github.com/machinelearningmindset/machine-learning-course
 https://medium.com/explore-artificial-intelligence/an-introduction-to-recurrent-neural-networks-72c97bf0912
+https://www.analyticsvidhya.com/blog/2019/04/introduction-deep-q-learning-python/
+https://keon.io/deep-q-learning/
+https://learndatasci.com/tutorials/reinforcement-q-learning-scratch-python-openai-gym/
+https://tiewkh.github.io/blog/deepqlearning-openaitaxi/
+https://www.alexirpan.com/2018/02/14/rl-hard.html
+https://towardsdatascience.com/real-world-examples-of-applied-machine-learning-from-ai-conference-4d4678700c6
+
+All machine learning is AI, but not all AI is machine learning.
 
 a) linear : ax+b=0
 
@@ -242,3 +250,135 @@ The core reason that recurrent nets are more exciting is that they allow us to o
 
 RNNs combine the input vector with their state vector with a fixed (but learned) function to produce a new state vector : this output vector’s contents are influenced not only by the input you just fed in, but also on the entire history of inputs you’ve fed in in the past. 
 
+
+ =================== Deep reinforcement Q Learning
+
+ A reinforcement learning task is about training an agent which interacts with its environment. The agent arrives at different scenarios known as states by performing actions. Actions lead to rewards which could be positive and negative.
+
+The agent has only one purpose here – to maximize its total reward across an episode. This episode is anything and everything that happens between the first state and the last or terminal state within the environment. We reinforce the agent to learn to perform the best actions by experience. This is the strategy or policy.
+
+Observation of the environment
+Deciding how to act using some strategy
+Acting accordingly
+Receiving a reward or penalty
+Learning from the experiences and refining our strategy
+Iterate until an optimal strategy is found
+
+Markov Decision Process (MDP) : we assume that each state follows a Markov property, i.e., each state depends solely on the previous state and the transition from that state to the current state.
+
+Q Learning : Let’s say we know the expected reward of each action at every step. This would essentially be like a cheat sheet for the agent! Our agent will know exactly which action to perform. It will perform the sequence of actions that will eventually generate the maximum total reward. This total reward is also called the Q-value.
+
+Q-value yielded from being at state s and performing action a is the immediate reward r(s,a) plus the highest Q-value possible from the next state s’. This is a recursive equation, we can start with making arbitrary assumptions for all q-values
+
+we approximate these Q-values with machine learning models such as a neural network? Well, this was the idea behind DeepMind’s algorithm that led to its acquisition by Google for 500 million dollars!
+
+deep Q-learning : In deep Q-learning, we use a neural network to approximate the Q-value function. The state is given as the input and the Q-value of all possible actions is generated as the output.
+
+All the past experience is stored by the user in memory
+The next action is determined by the maximum output of the Q-network
+The loss function here is mean squared error of the predicted Q-value and the target Q-value – Q*. This is basically a regression problem.
+the network is going to update its gradient using backpropagation to finally converge.
+
+Challenges in Deep RL : Non-stationary or unstable target: the target is continuously changing with each iteration. In deep learning, the target variable does not change and hence the training is stable, which is just not true for RL. As we play out the game, we get to know more about the ground truth values of states and actions and hence, the output is also changing.
+
+Target Network : instead of using one neural network for learning, we can use two. target network & prediction network. separate network to estimate the target. This target network has the same architecture as the function approximator but with frozen parameters. For every C iterations (a hyperparameter), the parameters from the prediction network are copied to the target network. This leads to more stable training because it keeps the target function fixed (for a while)
+
+Experience Replay : Instead of running Q-learning on state/action pairs as they occur during simulation or the actual experience, the system stores the data discovered for [state, action, reward, next_state] – in a large table. During training, we could sample a random batch of 64 frames from the last 100,000 frames to train our network. This would get us a subset within which the correlation amongst the samples is low and will also provide better sampling efficiency.
+
+‘exploration rate’ or ‘epsilon’ => agent will randomly select its action at first by a certain percentage
+
+State Space
+action space
+Reward Table : {action: [(probability, nextstate, reward, done)]}
+
+ Q-table & Q-values
+
+ Q-values are initialized to an arbitrary value, and as the agent exposes itself to the environment and receives different rewards by executing different actions, the Q-values are updated using the equation:
+
+Q(state,action)←(1−α)Q(state,action)+α(reward+γmaxaQ(next state,all actions))
+Where:
+
+- α (alpha) is the learning rate (0<α≤1) - Just like in supervised learning settings, α is the extent to which our Q-values are being updated in every iteration.
+
+- γ (gamma) is the discount factor (0≤γ≤1) - determines how much importance we want to give to future rewards. A high value for the discount factor (close to 1) captures the long-term effective award, whereas, a discount factor of 0 makes our agent consider only immediate reward, hence making it greedy.
+
+We are assigning (←), or updating, the Q-value of the agent's current state and action by first taking a weight (1−α) of the old Q-value, then adding the learned value. The learned value is a combination of the reward for taking the current action in the current state, and the discounted maximum reward from the next state we will be in once we take the current action.
+
+Basically, we are learning the proper action to take in the current state by looking at the reward for the current state/action combo, and the max rewards for the next state. 
+
+After enough random exploration of actions, the Q-values tend to converge serving our agent as an action-value function which it can exploit to pick the most optimal action from a given state.
+
+There's a tradeoff between exploration (choosing a random action) and exploitation (choosing actions based on already learned Q-values). We want to prevent the action from always taking the same route, and possibly overfitting, so we'll be introducing another parameter called ϵ "epsilon" to cater to this during training.
+
+=> Deep RL Limits, benchmark
+
+The rule-of-thumb is that except in rare cases, domain-specific algorithms work faster and better than reinforcement learning
+Reward Function Design is Difficult
+Even When Deep RL Works, It May Just Be Overfitting to Weird Patterns In the Environment
+It’s hard to find cases where deep RL has created practical real world value.
+
+=================== Real world example ML
+
+DQN, AlphaGo, AlphaZero, Dota 2 (reinforcement learning), the parkour bot, reducing power center usage, and AutoML with Neural Architecture Search.
+
+DeepMind AI Reduces Google Data Centre Cooling Bill by 40%
+
+realistic speech synthesis Tacotron
+
+Uber: Improving customer support with natural language processing and deep learning 
+The Machine Learning team wanted to focus on making customer support representatives (CSRs) more effective by recommending the three most relevant solutions — essentially a ‘human-in-the-loop’ model architecture called Customer Obsession Ticket Assistant, or COTA.  (1) COTA v1 which converts a multi-class classification task into a ranking problem and (2) COTA v2 which used a deep learning approach called Encoder-Combiner-Decoder. Both models ingested the ticket, user, and trip information to suggest ticket classifications and reply templates (answers) for CSRs. COTA v2 was 20–30% more accurate than COTA v1 in their A/B tests. COTA v2 also reduced handling time by ~8% versus COTA v2’s ~15% reduction.
+
+Zocdoc: Reverse engineering your AI prototype and the road to reproducibility (ZocDoc is an online medical care appointment booking service)
+finding in-network physicians based on their insurance coverage. The ZocDoc team built an insurance card checker that allowed the patient to scan a picture of their insurance card, and then extracted the relevant details from the card to check whether a particular doctor and particular procedure was covered.
+ZocDoc’s image recognition task was difficult because:
+user-submitted images often have poor resolution and vary in dimension (due to a lack of formatting constraints) resulting in poor training data quality
+insurance cards contain a plethora of other types of information and may sometimes repeat the member ID
+the team had to quickly build a prototype then transform their process into a reproducible pipeline
+
+completely tear down the infrastructure they had for the prototype because of scalability and reproducibility concerns.
+However, their journey was one of constant iteration and frustration around the experience of data and model management.
+
+Airbnb : Categorizing Listing Photos at Airbnb
+Image Classification, categorization makes possible a simple home tour where photos with the same room type can be grouped together. For another, categorization makes it much easier to validate the number of certain rooms and check whether the basic room information is correct. 
+Object Detection : we are able to verify the quality of the listings from hosts and make it much easier for guests to find homes with specific amenity needs
+
+Spotify : To create Discover Weekly, there are three main types of recommendation models that Spotify employs:
+Collaborative Filtering models (i.e. the ones that Last.fm originally used), which analyze both your behavior and others’ behaviors.
+Natural Language Processing (NLP) models, which analyze text.
+Audio models, which analyze the raw audio tracks themselves. : raw audio models take new songs into account => convolutional neural networks
+
+Tesla : self-driving cars => imitation learning : Tesla’s engineers believe that by putting enough data from good human driving through a neural network, that network can learn how to directly predict the correct steering, braking and acceleration in most situations.”  we don’t know for sure that Tesla is using reinforcement learning to train Autopilot - so far the company has only said it’s using imitation learning. However, considering the vast amounts of driving data Tesla has available, and the success that others have been demonstrating with reinforcement learning, it seems likely that the company is combining the two techniques in its quest to teach a machine to match (or hopefully, exceed) human driving ability.
+
+AlphaStar (deepMind) mastered StarCraft by using two different machine learning techniques. In supervised imitation learning, an AI examines a huge number of examples of something, and eventually learns how to recognize that something - in the classic example, if you show an AI a million photos of cats, it will learn to identify a cat, as opposed to a dog (which isn’t as easy as it sounds). The second technique, reinforcement learning, is a process of trial and error - an AI takes a random action, observes the effect, and learns which actions lead to the desired results. “Imitation learning followed by reinforcement learning is a one-two punch I suspect we could see a lot of in the future,” writes Eady.
+
+Uber’s use of machine learning for ETAs for rides, estimated meal delivery times on UberEATS, computing optimal pickup locations, as well as for fraud detection.  to predict rider demand to ensure that “surge pricing”(short periods of sharp price increases to decrease rider demand and increase driver supply) will soon no longer be necessary.
+
+Spam Filters, smart Email Categorization
+
+plagiarism detection for regular text, Robo-readers
+
+Mobile Check Deposits, the vast majority of major banks rely on technology developed by Mitek, which uses AI and ML to decipher and convert handwriting on checks into text via OCR. 
+Fraud Prevention, FICO, the company that creates the well-known credit ratings used to determine creditworthiness, uses neural networks to predict fraudulent transactions.
+Credit Decisions, FICO uses ML both in developing your FICO score, which most banks use to make credit decisions, and in determining the specific risk assessment for individual customers. MIT researchers found that machine learning could be used to reduce a bank’s losses on delinquent customers by up to 25%.
+
+Facebook, Facebook discusses the use of artificial neural networks—ML algorithms that mimic the structure of the human brain—to power facial recognition software. DeepText, a text understanding engine that, the company claims “can understand with near-human accuracy the textual content of several thousand posts per second, spanning more than 20 languages.”
+
+Pinterest uses computer vision, an application of AI where computers are taught to “see,” in order to automatically identify objects in images (or “pins”) and then recommend visually similar pins. Other applications of machine learning at Pinterest include spam prevention, search and discovery, ad performance and monetization, and email marketing.
+
+Instagram uses machine learning to identify the contextual meaning of emoji : By algorithmically identifying the sentiments behind emojis, Instagram can create and auto-suggest emojis and emoji hashtags.
+
+Snapchat facial filters, this technology is  powered by the 2015 acquisition of Looksery (for a rumored $150 million), a Ukranian company with patents on using machine learning to track movements in video.
+
+AI chatbots => Conversational AI Chatbot using Deep Learning: How Bi-directional LSTM, Machine Reading Comprehension, Transfer Learning, Sequence to Sequence Model with multi-headed attention mechanism, Generative Adversarial Network, Self Learning based Sentiment Analysis and Deep Reinforcement Learning can help in Dialog Management for Conversational AI chatbot
+
+Amazon : Amazon uses artificial neural networks to generate these product recommendations.
+
+Machine learning is used for fraud prevention in online credit card transactions. By utilizing AI that can learn your purchasing habits, credit card processors minimize the probability of falsely declining your card while maximizing the probability of preventing somebody else from fraudulently charging it.
+
+Google uses artificial neural networks to power voice search. 
+
+Smart Personal Assistants : Alexa, an AI-powered personal assistant that accepts voice commands to create to-do lists, order items online, set reminders, and answer questions (via internet searches). Echo (and later, Dot) smart speakers that allow you to integrate Alexa into your living room and use voice commands to ask natural language questions, play music, order pizza, hail an Uber, and integrate with smart home devices.
+
+casual chess players regularly use AI powered chess engines to analyze their games and practice tactics
+
+bloggers often use mailing-list services that use ML to optimize reader engagement and open-rates.
