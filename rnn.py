@@ -14,6 +14,8 @@ parser = argparse.ArgumentParser(description='Creating Classifier')
 # Optimization Flags #
 ######################
 
+tf.app.flags.DEFINE_string('f', '', 'kernel')
+
 tf.app.flags.DEFINE_float('learning_rate', default=0.001, help='initial learning rate')
 tf.app.flags.DEFINE_integer('seed', default=111, help='seed')
 
