@@ -24,6 +24,8 @@ model.add(Activation('relu'))
 model.add(Dense(nb_actions))
 model.add(Activation('linear'))
 print(model.summary())
+print((1,) + env.observation_space.shape)
+
 
 policy = EpsGreedyQPolicy()
 memory = SequentialMemory(limit=50000, window_length=1)
