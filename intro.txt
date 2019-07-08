@@ -1,3 +1,32 @@
+Plan pres :
+
+Machine learning : 
+
+    => classical learning :
+        - supervised :
+            * linear regression
+            * Decision Trees
+            * KNN
+            * Naive Bayes
+            * Logistic Regression
+            * Linear Support Vector Machines
+        - unsupervised :
+            * Clustering
+            * Principal Component Analysis
+
+    => deep learning :
+        - Multi-layer Perceptron
+        - Convolutional Neural Networks
+        - Autoencoders
+        - RNN
+
+    => Reinforcement Learning : 
+        - Q Learning
+        - Deep Q learning
+
+    => Real world examples
+
+
 https://github.com/machinelearningmindset/machine-learning-course
 https://medium.com/explore-artificial-intelligence/an-introduction-to-recurrent-neural-networks-72c97bf0912
 https://www.analyticsvidhya.com/blog/2019/04/introduction-deep-q-learning-python/
