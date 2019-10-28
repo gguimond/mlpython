@@ -1,6 +1,6 @@
 import requests, os
 
-os.environ['NANONETS_MODEL_ID'] = 'd8b67eee-3fbb-4064-9adc-93c242d4c3d1'
+os.environ['NANONETS_MODEL_ID'] = '14da5702-cab8-40a8-be57-42147da82580'
 os.environ['NANONETS_API_KEY'] = 'yzwmDDQAx3z6kDNKmk6y1LmR2-Ae-UJ4'
 
 model_id = os.environ.get('NANONETS_MODEL_ID')

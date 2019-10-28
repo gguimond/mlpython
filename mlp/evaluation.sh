@@ -1,4 +1,4 @@
 # Run training.
-py test.py \
+python test.py \
   --batch_size=512 \
   --allow_soft_placement

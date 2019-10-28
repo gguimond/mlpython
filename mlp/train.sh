@@ -1,5 +1,5 @@
 # Run training.
-py train.py \
+python train.py \
   --batch_size=512 \
   --max_num_checkpoint=10 \
   --num_classes=10 \

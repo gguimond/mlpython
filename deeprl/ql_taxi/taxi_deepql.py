@@ -2,6 +2,10 @@ import gym
 import numpy as np
 import random
 
+import tensorflow as tf
+
+tf.compat.v1.disable_eager_execution()
+
 from keras.models import Sequential
 from keras.layers import Dense, Activation, Flatten, Embedding, Reshape
 from keras.optimizers import Adam
@@ -23,7 +27,7 @@ def print_frames(frames):
         print(f"Reward: {frame['reward']}")
         sleep(.1)
 
-env = gym.make("Taxi-v2").env
+env = gym.make("Taxi-v3").env
 
 env.reset()
 state = env.encode(3, 1, 2, 0) # (taxi row, taxi column, passenger index, destination index)
